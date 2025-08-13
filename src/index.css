@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* .clip-sidebar {
+    -webkit-clip-path: polygon(
+    0 0,
+    70% 0,
+    84% 2%,
+    92% 7%,
+    98% 16%,
+    104% 26%,
+    104% 74%,
+    98% 84%,
+    92% 93%,
+    84% 98%,
+    70% 100%,
+    0 100%
+  );
+  clip-path: polygon(
+    0 0,
+    70% 0,
+    84% 2%,
+    92% 7%,
+    98% 16%,
+    104% 26%,
+    104% 74%,
+    98% 84%,
+    92% 93%,
+    84% 98%,
+    70% 100%,
+    0 100%
+  );
+  } */
+}
