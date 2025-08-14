@@ -1,7 +1,7 @@
 const CardComponent = ({ stat }) => {
   return (
     <div
-      className={`bg-[#F8FBFF] p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center`}
+      className={`bg-[#F6FAFF] p-6 rounded-2xl shadow-sm flex flex-col items-center justify-center`}
     >
       {/* Icon/Image */}
       <div className="mb-3">

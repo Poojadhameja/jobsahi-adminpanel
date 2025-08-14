@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AdminSidebar from './components/AdminSidebar.jsx'; // Import the AdminSidebar component
 import AdminDashboard from './pages/AdminDashboard.jsx';
-import StudentManagementDashboard from './pages/StudentManagementDashboard.jsx'; // Import the StudentManagementDashboard component
+import MainDashboard from './components/MainDashboard.jsx';
 // import other components...
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <div className="ml-64 flex-1 p-4">
           <Routes>
             <Route path="/AdminDashboard" element={<AdminDashboard />} />
-            <Route path="/StudentManagementDashboard" element={<StudentManagementDashboard />} />
+            <Route path="/MainDashboard" element={<MainDashboard />} />
           </Routes>
         </div>
       </div>
