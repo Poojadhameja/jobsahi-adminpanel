@@ -27,7 +27,23 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
     message: '',
     recipients: 'all'
   });
-
+  const [selectedValues, setSelectedValues] = useState({
+    Courses: "All Courses",
+    "Placement Status": "All Status",
+    Skills: "All Skills",
+    Experience: "All Experience",
+  });
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const dropdownOptions = {
+    Courses: ["All Courses", "Web Development", "Data Science", "AI & ML"],
+    "Placement Status": ["All Status", "Placed", "Pending", "Not Placed"],
+    Skills: ["All Skills", "React", "Java", "Python", "SQL"],
+    Experience: ["All Experience", "0-1 Years", "2-3 Years", "3+ Years"],
+  };
+  const handleSelect = (tab, option) => {
+    setSelectedValues((prev) => ({ ...prev, [tab]: option }));
+    setOpenDropdown(null);
+  };
   // Sample data
   const sampleStudents = [
     { id: 1, name: 'John Doe', email: 'john@email.com', grade: '12th', phone: '123-456-7890' },
@@ -68,6 +84,10 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
       tags: ["Carpenter", "Woodwork", "Furniture"]
     }
   ];
+  const handleApplyFilter = () => {
+  // Your filter logic here
+  console.log("Filters applied");
+};
 
   // Export Data Function
   const handleExportData = () => {
@@ -158,14 +178,14 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
       </div>
 
       {/* Action Buttons Component */}
-      <ActionButtons 
+      <ActionButtons
         handleExportData={handleExportData}
         handleSendNotification={handleSendNotification}
         handleAddStudent={handleAddStudent}
       />
 
       {/* Add Student Form Modal Component */}
-      <AddStudentModal 
+      <AddStudentModal
         showAddStudentForm={showAddStudentForm}
         setShowAddStudentForm={setShowAddStudentForm}
         studentData={studentData}
@@ -174,7 +194,7 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
       />
 
       {/* Send Notification Modal Component */}
-      <NotificationModal 
+      <NotificationModal
         showNotificationModal={showNotificationModal}
         setShowNotificationModal={setShowNotificationModal}
         notificationData={notificationData}
@@ -193,101 +213,124 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
         </div>
 
         {/* Filters and Tabs */}
-              <div className="max-w-7xl mx-auto p-4">
-                <div className="bg-[#F8FBFF] rounded-2xl p-4 flex items-center justify-between">
-                  {/* Left section: Advanced Filters label */}
-                  <div className="flex items-center space-x-6">
-                    <div className="flex items-center space-x-2">
-                      <img
-                        src={SearchGradient}
-                        alt="Filters"
-                        className="w-5 h-5 object-contain"
-                      />
-                      <span
-                        className="text-[#004D73] font-semibold text-base"
-                        style={{ fontFamily: "'Inter', sans-serif" }}
-                      >
-                        Advanced Filters
-                      </span>
+        <div className="max-w-8xl mx-auto py-4">
+          <div className="bg-[#F8FBFF] border border-[#0e6aa81a] rounded-2xl flex items-start pt-5 px-3 gap-40 justify-right min-h-[150px]">
+            {/* Left section: Advanced Filters label */}
+            <div className="flex items-center space-x-1 mb-6">
+              <img
+                src={SearchGradient}
+                alt="Filters"
+                className="w-5 h-5 object-contain"
+              />
+              <span
+                className="text-[#004D73] font-semibold text-base"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                Advanced Filters
+              </span>
+            </div>
+
+            <div className="flex flex-col space-y-5">
+              {/* Filter Tabs Row */}
+              <div className="flex items-right justify-left space-x-3">
+                {filterTabs.map((tab) => (
+                  <div key={tab} className="relative flex flex-col">
+                    <span className="text-[#0E6BA8] font-semibold text-xs mb-1">
+                      {tab}
+                    </span>
+                    <div
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === tab ? null : tab)
+                      }
+                      className="flex items-center bg-[#E6F1FA] border border-[#0e6aa81a] text-gray-700 px-4 py-2 rounded-lg cursor-pointer min-w-[150px]"
+                    >
+                      <span className="text-sm">{selectedValues[tab]}</span>
+                      <ChevronDown size={16} className="ml-auto text-gray-500" />
                     </div>
 
-                    {/* Filter Dropdowns */}
-                    <div className="flex items-center justify-center space-x-4">
-                      {filterTabs.map((tab) => (
-                        <div key={tab} className="flex flex-col">
-                          <span className="text-[#0E6BA8] font-semibold text-xs mb-1">
-                            {tab}
-                          </span>
-                          <div className="flex items-center bg-[#E6F1FA] text-gray-700 px-3 py-1.5 rounded-lg cursor-pointer min-w-[150px]">
-                            <span className="text-sm">
-                              {tab === "Courses"
-                                ? "All Courses"
-                                : tab === "Placement Status"
-                                ? "All Status"
-                                : tab === "Skills"
-                                ? "All Skills"
-                                : "All Experience"}
-                            </span>
-                            <ChevronDown size={16} className="ml-auto text-gray-500" />
+                    {/* Dropdown Menu */}
+                    {openDropdown === tab && (
+                      <div className="absolute top-full mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                        {dropdownOptions[tab].map((option) => (
+                          <div
+                            key={option}
+                            onClick={() => handleSelect(tab, option)}
+                            className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                          >
+                            {option}
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                </div>
-
-
-                {/* Right section: Buttons */}
-                <div className="flex items-center justify-end space-x-3">
-                  <button
-                    className="px-4 py-1.5 text-sm bg-[#f1f5f9] border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
-                  >
-                    Clear All
-                  </button>
-                  <button
-                    className="px-4 py-1.5 text-sm bg-[#1d4ed8] text-white rounded-md hover:bg-[#1e40af]"
-                  >
-                    Apply Filter
-                  </button>
-                </div>
+                ))}
               </div>
 
-        {/* Dynamic Content Section */}
-        <div className="p-6 border-b border-gray-100">
-          <div className="flex items-center justify-between">
-            <h2 className="flex items-center font-semibold text-black" 
+              {/* Buttons Row */}
+              <div className="flex justify-end space-x-3">
+                <button
+                  onClick={() =>
+                    setSelectedValues({
+                      Courses: "All Courses",
+                      "Placement Status": "All Status",
+                      Skills: "All Skills",
+                      Experience: "All Experience",
+                    })
+                  }
+                  className="px-4 py-2 text-sm bg-[#f1f5f9] border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+                >
+                  Clear All
+                </button>
+
+                <button
+                  className="px-4 py-2 text-sm bg-[#1d4ed8] text-white rounded-md hover:bg-[#1e40af]"
+                  onClick={handleApplyFilter}
+                >
+                  Apply Filter
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+          {/* Dynamic Content Section */}
+          <div className="p-6 border-b border-gray-100">
+            <div className="flex items-center justify-between">
+              <h2 className="flex items-center font-semibold text-black"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: '32px',
                   lineHeight: '40px',
                   fontWeight: 600
                 }}>
-              <Users className="mr-2 text-blue-600" size={24} />
-              All Student Profiles
-            </h2>
-            <div className="relative w-full max-w-md">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500" size={20} />
-                <input
-                  type="text"
-                  placeholder="Search by name, email, or student ID..."
-                  value={localSearchQuery}
-                  onChange={handleLocalSearch}
-                  className="w-full pl-9 pr-4 py-2 border-2 border-gray-300 rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200"
-                />
+                <Users className="mr-2 text-blue-600" size={24} />
+                All Student Profiles
+              </h2>
+              <div className="relative w-full max-w-md">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-500" size={20} />
+                  <input
+                    type="text"
+                    placeholder="Search by name, email, or student ID..."
+                    value={localSearchQuery}
+                    onChange={handleLocalSearch}
+                    className="w-full pl-9 pr-4 py-2 border-2 border-gray-300 rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-200"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        {/* Student List */}
-        <div className="min-h-full bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <StudentList students={Students} getTagColor={getTagColor} />
+
+          {/* Student List */}
+          <div className="min-h-full bg-gray-50">
+            <div className="max-w-7xl mx-auto">
+              <StudentList students={Students} getTagColor={getTagColor} />
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 

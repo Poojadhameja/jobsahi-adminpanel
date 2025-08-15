@@ -16,7 +16,7 @@ const AdminSidebar = () => {
   const menuItems = [
     { icon: Home, label: 'Dashboard', path: '/AdminDashboard' },
     { icon: Users, label: 'Management', path: '/MainDashboard' },
-    { icon: Shield, label: 'Role & Access Control', path: '/AccessControl' },
+    { icon: Shield, label: 'Job & Course Control', path: '/AccessControl' },
     { icon: FileText, label: 'Business & Revenue Plans', path: '/BusinessPlans' },
     { icon: BarChart3, label: 'Reports & Analytics Center', path: '/ReportsAnalytics' },
     { icon: MessageSquare, label: 'Messaging & Campaigns', path: '/MessagingCampaigns' },
