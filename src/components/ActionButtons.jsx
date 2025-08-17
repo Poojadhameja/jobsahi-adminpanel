@@ -10,7 +10,7 @@ const ActionButtons = ({
       {/* Export Data */}
       <button
         onClick={handleExportData}
-        className="flex items-center px-4 py-2 border border-blue-400 rounded-xl text-blue-600 font-semibold hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:text-white hover:opacity-90 transition"
+        className="flex items-center px-4 py-2 border border-blue-400 rounded-xl text-blue-600 font-semibold hover:bg-gradient-to-r from-[#5c9a24] to-[#0B537D] hover:text-white hover:opacity-90 transition"
       >
         📊 <span className="ml-2">Export Data</span>
       </button>
@@ -18,7 +18,7 @@ const ActionButtons = ({
       {/* Send Bulk Notification */}
       <button 
         onClick={handleSendNotification}
-        className="flex items-center px-4 py-2 border border-blue-400 rounded-xl text-blue-600 font-semibold hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:text-white hover:opacity-90 transition"
+        className="flex items-center px-4 py-2 border border-blue-400 rounded-xl text-blue-600 font-semibold hover:bg-gradient-to-r from-[#5c9a24] to-[#0B537D] hover:text-white hover:opacity-90 transition"
       >
         📩 <span className="ml-2">Send Bulk Notification</span>
       </button>
@@ -26,7 +26,7 @@ const ActionButtons = ({
       {/* Add Student */}
       <button
         onClick={handleAddStudent}
-        className="flex items-center px-4 py-2 border border-blue-400 rounded-xl text-blue-600 font-semibold hover:bg-gradient-to-r from-purple-500 to-blue-500 hover:text-white hover:opacity-90 transition"
+        className="flex items-center px-4 py-2 border border-blue-400 rounded-xl text-blue-600 font-semibold hover:bg-gradient-to-r from-[#5c9a24] to-[#0B537D] hover:text-white hover:opacity-90 transition"
       >
         ➕ <span className="ml-2">Add Student</span>
       </button>

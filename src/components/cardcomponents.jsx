@@ -35,11 +35,13 @@ const CardComponent = ({ stat }) => {
           getIcon(stat.type)
         )}
       </div>
-
       {/* Title */}
       <p className="text-base font-medium text-gray-700 mb-1 text-center">
         {stat.title}
       </p>
+          <p className="text-2xl font-bold text-gray-900">{stat.amount}</p>
+          <p className="text-xs text-gray-500">{stat.growth}</p>
+
 
       {/* Count/Value */}
       <p className="text-3xl font-bold text-gray-900">{stat.value || stat.count}</p>

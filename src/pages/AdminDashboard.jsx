@@ -167,8 +167,8 @@ const AdminDashboard = () => {
               <AreaChart data={applicationData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorApplications" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.05}/>
+                    <stop offset="5%" stopColor="#0B537D" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="##0B537D" stopOpacity={0.05}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -196,61 +196,68 @@ const AdminDashboard = () => {
                 <Area
                   type="monotone"
                   dataKey="applications"
-                  stroke="#8B5CF6"
+                  stroke="#0B537D"
                   strokeWidth={2}
                   fill="url(#colorApplications)"
-                  dot={{ fill: '#8B5CF6', strokeWidth: 0, r: 4 }}
-                  activeDot={{ r: 6, fill: '#8B5CF6' }}
+                  dot={{ fill: '#0B537D', strokeWidth: 0, r: 4 }}
+                  activeDot={{ r: 6, fill: '#0B537D' }}
                 />
               </AreaChart>
             </ResponsiveContainer>
           </div>
 
           {/* Skills Distribution */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Skills in Demand</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={skillsData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={70}
-                  outerRadius={110}
-                  paddingAngle={3}
-                  dataKey="value"
-                >
-                  {skillsData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
+     <div className="bg-white p-6 rounded-lg shadow-sm border">
+  <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Skills in Demand</h3>
+  <ResponsiveContainer width="100%" height={300}>
+    <PieChart>
+      <Pie
+        data={skillsData}
+        cx="50%"
+        cy="50%"
+        innerRadius={70}
+        outerRadius={110}
+        paddingAngle={3}
+        dataKey="value"
+      >
+        {skillsData.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={entry.color} />
+        ))}
+      </Pie>
 
-                <Tooltip
-                  formatter={(value, name) => [`${value}`, name]}
-                  contentStyle={{
-                    backgroundColor: '#1F2937',
-                    border: 'none',
-                    borderRadius: '6px',
-                    color: 'white',
-                    fontSize: '0.85rem',
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+      <Tooltip
+        formatter={(value, name) => [`${value}`, name]}
+        labelFormatter={() => ''}
+        contentStyle={{
+          backgroundColor: '#1F2937',
+          border: 'none',
+          borderRadius: '6px',
+          color: 'white',
+          fontSize: '0.85rem',
+          padding: '8px 12px',
+        }}
+        itemStyle={{
+          color: 'white',
+          fontSize: '0.85rem',
+        }}
+        cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
+      />
+    </PieChart>
+  </ResponsiveContainer>
 
-            {/* Legend under chart */}
-            <div className="mt-4 flex flex-wrap gap-4">
-              {skillsData.map((skill, index) => (
-                <div key={index} className="flex items-center text-sm text-gray-700">
-                  <div
-                    className="w-3 h-3 rounded-full mr-2"
-                    style={{ backgroundColor: skill.color }}
-                  ></div>
-                  {skill.name}
-                </div>
-              ))}
-            </div>
-          </div>
+  {/* Legend under chart */}
+  <div className="mt-4 flex flex-wrap gap-4">
+    {skillsData.map((skill, index) => (
+      <div key={index} className="flex items-center text-sm text-gray-700">
+        <div
+          className="w-3 h-3 rounded-full mr-2"
+          style={{ backgroundColor: skill.color }}
+        ></div>
+        {skill.name}
+      </div>
+    ))}
+  </div>
+</div>
         </div>
       </main>
     </div>

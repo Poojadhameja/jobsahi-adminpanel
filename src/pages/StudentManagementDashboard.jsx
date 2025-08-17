@@ -45,12 +45,12 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
     setOpenDropdown(null);
   };
   // Sample data
-  const sampleStudents = [
-    { id: 1, name: 'John Doe', email: 'john@email.com', grade: '12th', phone: '123-456-7890' },
-    { id: 2, name: 'Jane Smith', email: 'jane@email.com', grade: 'Undergraduate', phone: '098-765-4321' },
-    { id: 3, name: 'Mike Johnson', email: 'mike@email.com', grade: 'Postgraduate', phone: '555-123-4567' },
-    { id: 4, name: 'Sarah Wilson', email: 'sarah@email.com', grade: 'PhD', phone: '444-555-6666' }
-  ];
+  // const sampleStudents = [
+  //   { id: 1, name: 'John Doe', email: 'john@email.com', grade: '12th', phone: '123-456-7890' },
+  //   { id: 2, name: 'Jane Smith', email: 'jane@email.com', grade: 'Undergraduate', phone: '098-765-4321' },
+  //   { id: 3, name: 'Mike Johnson', email: 'mike@email.com', grade: 'Postgraduate', phone: '555-123-4567' },
+  //   { id: 4, name: 'Sarah Wilson', email: 'sarah@email.com', grade: 'PhD', phone: '444-555-6666' }
+  // ];
 
   const Students = [
     {
@@ -283,7 +283,7 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
                 </button>
 
                 <button
-                  className="px-4 py-2 text-sm bg-[#1d4ed8] text-white rounded-md hover:bg-[#1e40af]"
+                  className="px-4 py-2 text-sm bg-[#0B537D] text-white rounded-md hover:bg-[#0B537D]"
                   onClick={handleApplyFilter}
                 >
                   Apply Filter

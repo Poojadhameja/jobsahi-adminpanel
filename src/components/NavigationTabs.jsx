@@ -6,9 +6,8 @@ const NavigationTabs = ({ navigationTabs, activeNavTab, setActiveNavTab }) => {
     <div>
       {/* Tabs Header */}
       <div 
-        className="flex justify-center items-center box-border mx-auto"
+        className="flex justify-center items-center box-border mx-auto w-full p-3"
         style={{
-          width: '737px',
           height: '46px',
           background: '#F6FAFF',
           border: '1px solid rgba(11, 83, 125, 0.15)',
@@ -19,7 +18,6 @@ const NavigationTabs = ({ navigationTabs, activeNavTab, setActiveNavTab }) => {
       <div 
         className="flex items-center justify-center"
         style={{
-          width: '726px',
           height: '36px',
           gap: '18px'
         }}

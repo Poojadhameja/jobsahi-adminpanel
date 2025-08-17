@@ -251,7 +251,7 @@ const StudentList = ({ students, getTagColor }) => {
             <div 
               className="w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold shadow-sm"
               style={{
-                background: 'linear-gradient(135deg, #6C6BCF 0%, #8B5CF6 100%)'
+                background: 'linear-gradient(135deg, #0B537D 0%, #0B537D 100%)'
               }}
             >
               {student.name.split(' ').map(n => n[0]).join('')}
