@@ -1,13 +1,14 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
-import { 
+import {
   GraduationCap,
   Briefcase,
-  Building, 
+  Building,
   ToggleLeft
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area } from 'recharts';
-import StatsCard from '../components/cardcomponents.jsx';
-import Header from '../components/Header.jsx'; // Import the Header component
+import StatsCard from '../../components/cards/cardcomponents.jsx';
+import Header from '../../components/navigation/Header.jsx';// Import the Header component
 
 const AdminDashboard = () => {
   const statsData = [
@@ -44,7 +45,7 @@ const AdminDashboard = () => {
       iconColor: 'text-gray-600'
     }
   ];
-  
+
   // Sample data for charts
   const applicationData = [
     { month: 'Jan', applications: 1500 },
@@ -112,9 +113,9 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen w-full max-w-screen-full bg-white ">
       {/* Header Component */}
-      <Header 
+      <Header
         placeholder="Search by name, position"
         userRole="Admin"
         showNotification={true}
@@ -125,11 +126,11 @@ const AdminDashboard = () => {
       />
 
       {/* Dashboard Content */}
-      <main className="p-6">
+      <main className="px-3 py-4 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
         {/* Dashboard Overview Header */}
-        <div className="mb-8 text-center  border-blue-500 rounded-lg p-6 bg-blue-50/30">
-          <h2 className="text-xl font-semibold text-blue-600 mb-2">Dashboard Overview</h2>
-          <p className="text-blue-600/80">Monitor your platform's key metrics and performance</p>
+        <div className="mb-8 text-center border border-gray-300 rounded-lg p-6 bg-[#F6FAFF]">
+          <h2 className="text-lg font-semibold text-[#0B537D] mb-2">Dashboard Overview</h2>
+          <p className="text-[#0B537D]">Monitor your platform's key metrics and performance</p>
         </div>
 
         {/* Stats Cards */}
@@ -140,57 +141,60 @@ const AdminDashboard = () => {
         </div>
 
         {/* Placement Success Funnel */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Placement Success Funnel</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+       <div className="bg-[#F6FAFF] p-6 rounded-lg shadow-sm border mb-8">
+          <h3 className="text-md font-semibold text-gray-900 mb-6">Placement Success Funnel</h3>
+          <div className="grid grid-cols-4 md:grid-cols-4 md:text-xs gap-6">
             {funnelData.map((item, index) => (
               <div key={index} className="text-center">
                 <div className={`w-20 h-20 ${item.bgColor} rounded-full flex items-center justify-center mx-auto mb-3`}>
-                  <span className="text-white font-bold text-lg">{item.count}</span>
+                  <span className="text-white font-bold text-md">{item.count}</span>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900 mb-1">{item.title}</p>
+                  <p className="text-gray-900 text-xs mb-1">{item.title}</p>
                   <p className="text-sm text-gray-600">{item.subtitle}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        
-        <div className="grid grid-cols-2 gap-9">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-9">
           {/* Applications Chart */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">
+          <div className="bg-[#F6FAFF] p-4 sm:p-6 rounded-lg shadow-sm border">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4 sm:mb-6">
               Applications Trend (Last 6 Months)
             </h3>
-            <ResponsiveContainer width="100%" height={250}>
+            <ResponsiveContainer width="100%" height={200} className="sm:h-[250px]">
               <AreaChart data={applicationData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorApplications" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#0B537D" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="##0B537D" stopOpacity={0.05}/>
+                    <stop offset="5%" stopColor="#0B537D" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#0B537D" stopOpacity={0.05} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis 
-                  dataKey="month" 
+                <XAxis
+                  dataKey="month"
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 12, fill: '#666' }}
+                  className="text-xs sm:text-sm"
                 />
-                <YAxis 
+                <YAxis
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 12, fill: '#666' }}
                   domain={[0, 4000]}
                   ticks={[0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000]}
+                  className="text-xs sm:text-sm"
                 />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{
                     background: 'white',
                     border: '1px solid #e5e7eb',
                     borderRadius: '8px',
-                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                    fontSize: '0.875rem'
                   }}
                 />
                 <Area
@@ -207,57 +211,61 @@ const AdminDashboard = () => {
           </div>
 
           {/* Skills Distribution */}
-     <div className="bg-white p-6 rounded-lg shadow-sm border">
-  <h3 className="text-lg font-semibold text-gray-900 mb-6">Top Skills in Demand</h3>
-  <ResponsiveContainer width="100%" height={300}>
-    <PieChart>
-      <Pie
-        data={skillsData}
-        cx="50%"
-        cy="50%"
-        innerRadius={70}
-        outerRadius={110}
-        paddingAngle={3}
-        dataKey="value"
-      >
-        {skillsData.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={entry.color} />
-        ))}
-      </Pie>
+          <div className="bg-[#F6FAFF] p-4 sm:p-6 rounded-lg shadow-sm border">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4 sm:mb-6">
+              Top Skills in Demand
+            </h3>
+            <ResponsiveContainer width="100%" height={250} className="sm:h-[300px]">
+              <PieChart>
+                <Pie
+                  data={skillsData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={90}
+                  paddingAngle={3}
+                  dataKey="value"
+                  className="sm:inner-radius-[70px] sm:outer-radius-[110px]"
+                >
+                  {skillsData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
 
-      <Tooltip
-        formatter={(value, name) => [`${value}`, name]}
-        labelFormatter={() => ''}
-        contentStyle={{
-          backgroundColor: '#1F2937',
-          border: 'none',
-          borderRadius: '6px',
-          color: 'white',
-          fontSize: '0.85rem',
-          padding: '8px 12px',
-        }}
-        itemStyle={{
-          color: 'white',
-          fontSize: '0.85rem',
-        }}
-        cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
-      />
-    </PieChart>
-  </ResponsiveContainer>
+                <Tooltip
+                  formatter={(value, name) => [`${value}`, name]}
+                  labelFormatter={() => ''}
+                  contentStyle={{
+                    backgroundColor: '#1F2937',
+                    border: 'none',
+                    borderRadius: '6px',
+                    color: 'white',
+                    fontSize: '0.75rem',
+                    padding: '6px 10px',
+                  }}
+                  itemStyle={{
+                    color: 'white',
+                    fontSize: '0.75rem',
+                  }}
+                  cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
+                  className="sm:text-sm"
+                />
+              </PieChart>
+            </ResponsiveContainer>
 
-  {/* Legend under chart */}
-  <div className="mt-4 flex flex-wrap gap-4">
-    {skillsData.map((skill, index) => (
-      <div key={index} className="flex items-center text-sm text-gray-700">
-        <div
-          className="w-3 h-3 rounded-full mr-2"
-          style={{ backgroundColor: skill.color }}
-        ></div>
-        {skill.name}
-      </div>
-    ))}
-  </div>
-</div>
+            {/* Legend under chart */}
+            <div className="mt-3 sm:mt-4 grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-4">
+              {skillsData.map((skill, index) => (
+                <div key={index} className="flex items-center text-xs sm:text-sm text-gray-700">
+                  <div
+                    className="w-2 h-2 sm:w-3 sm:h-3 rounded-full mr-1 sm:mr-2 flex-shrink-0"
+                    style={{ backgroundColor: skill.color }}
+                  ></div>
+                  <span className="truncate">{skill.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </div>

@@ -1,15 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Search, Users, ChevronDown } from 'lucide-react';
-import CardComponent from '../components/cardcomponents.jsx';
-import ActionButtons from '../components/ActionButtons.jsx';
-import AddStudentModal from '../components/AddStudentModal.jsx';
-import NotificationModal from '../components/NotificationModal.jsx';
-import StudentList from '../components/StudentList.jsx';
-import Student from "../../src/assets/images/student.png";
-import Verified from "../../src/assets/images/verified.png";
-import Folder from "../../src/assets/images/folder.png";
-import Target from "../../src/assets/images/target.png";
-import SearchGradient from "../../src/assets/icons/search-gradient.png";
+import CardComponent from '../../components/cards/cardcomponents.jsx';
+import ActionButtons from '../../components/buttons/ActionButtons.jsx';
+import AddStudentModal from '../../components/modals/AddStudentModal.jsx';
+import NotificationModal from '../../components/modals/NotificationModal.jsx';
+import StudentList from '../../components/lists/StudentList.jsx';
+import Student from "../../assets/images/student.png";
+import Verified from "../../assets/images/verified.png";
+import Folder from "../../assets/images/folder.png";
+import Target from "../../assets/images/target.png";
+import SearchGradient from "../../assets/icons/search-gradient.png";
+
 
 const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
   const [localSearchQuery, setLocalSearchQuery] = useState('');
@@ -44,13 +46,6 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
     setSelectedValues((prev) => ({ ...prev, [tab]: option }));
     setOpenDropdown(null);
   };
-  // Sample data
-  // const sampleStudents = [
-  //   { id: 1, name: 'John Doe', email: 'john@email.com', grade: '12th', phone: '123-456-7890' },
-  //   { id: 2, name: 'Jane Smith', email: 'jane@email.com', grade: 'Undergraduate', phone: '098-765-4321' },
-  //   { id: 3, name: 'Mike Johnson', email: 'mike@email.com', grade: 'Postgraduate', phone: '555-123-4567' },
-  //   { id: 4, name: 'Sarah Wilson', email: 'sarah@email.com', grade: 'PhD', phone: '444-555-6666' }
-  // ];
 
   const Students = [
     {
@@ -85,15 +80,15 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
     }
   ];
   const handleApplyFilter = () => {
-  // Your filter logic here
-  console.log("Filters applied");
-};
+    // Your filter logic here
+    console.log("Filters applied");
+  };
 
   // Export Data Function
   const handleExportData = () => {
     const dataToExport = [
       ['ID', 'Name', 'Email', 'Grade', 'Phone'],
-      ...sampleStudents.map(student => [
+      ...Students.map(student => [
         student.id,
         student.name,
         student.email,
@@ -168,11 +163,11 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
 
   return (
     <div className="p-5">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[#0B537D] mb-2 text-center">
+      <div className="mb-6 px-4 sm:px-6 lg:px-8">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B537D] mb-2 text-center">
           Student Management
         </h1>
-        <p className="text-[#0B537D] text-center text-sm">
+        <p className="text-[#0B537D] text-center text-xs sm:text-sm lg:text-base">
           Manage student profiles, track progress, and monitor placements
         </p>
       </div>
@@ -203,9 +198,9 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
       />
 
       {/* Stats Cards */}
-      <div className="p-2 bg-white min-h-screen">
+      <div className="bg-white min-h-screen px-3 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
         <div className="max-w-8xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {statsData.map((stat, index) => (
               <CardComponent key={index} stat={stat} />
             ))}
@@ -214,7 +209,7 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
 
         {/* Filters and Tabs */}
         <div className="max-w-8xl mx-auto py-4">
-          <div className="bg-[#F8FBFF] border border-[#0e6aa81a] rounded-2xl flex items-start pt-5 px-3 gap-40 justify-right min-h-[150px]">
+          <div className="bg-[#F8FBFF] border border-[#0e6aa81a] rounded-2xl flex items-start pt-5 px-3 gap-40 justify-right lg:justify-between min-h-[150px]">
             {/* Left section: Advanced Filters label */}
             <div className="flex items-center space-x-1 mb-6">
               <img
@@ -232,7 +227,7 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
 
             <div className="flex flex-col space-y-5">
               {/* Filter Tabs Row */}
-              <div className="flex items-right justify-left space-x-3">
+              <div className="flex gap-5 space-x-5">
                 {filterTabs.map((tab) => (
                   <div key={tab} className="relative flex flex-col">
                     <span className="text-[#0E6BA8] font-semibold text-xs mb-1">
@@ -294,7 +289,7 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
 
 
           {/* Dynamic Content Section */}
-          <div className="p-6 border-b border-gray-100">
+          <div className="p-6 border-b border-gray-100 px-3 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
             <div className="flex items-center justify-between">
               <h2 className="flex items-center font-semibold text-black"
                 style={{
@@ -322,8 +317,8 @@ const StudentManagementDashboard = ({ searchQuery: globalSearchQuery }) => {
           </div>
 
           {/* Student List */}
-          <div className="min-h-full bg-gray-50">
-            <div className="max-w-7xl mx-auto">
+          <div className="min-h-full bg-white px-3 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
+            <div className="max-w-8xl mx-auto">
               <StudentList students={Students} getTagColor={getTagColor} />
             </div>
           </div>

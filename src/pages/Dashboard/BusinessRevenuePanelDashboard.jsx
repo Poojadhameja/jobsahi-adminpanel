@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Users, Briefcase, Building2, Plus, BarChart3 } from 'lucide-react';
-import Header from '../components/Header.jsx';
-import NavigationTabs from "../components/NavigationTabs.jsx";
-import RevenueDashboard from "../pages/RevenueDashboard.jsx";
+import Header from '../../components/navigation/Header.jsx';
+import NavigationTabs from "../../components/navigation/NavigationTabs.jsx";
+import RevenueDashboard from "../../pages/BusineesRevenue/RevenueDashboard.jsx";
 
 const BusinessRevenuePanelDashboard = () => {
-    const [activeNavTab, setActiveNavTab] = useState('student');
+    const [activeNavTab, setActiveNavTab] = useState('revenue');
     const [searchQuery, setSearchQuery] = useState('');
 
     const navigationTabs = [
@@ -76,7 +76,7 @@ const BusinessRevenuePanelDashboard = () => {
     };
 
     return (
-        <div className="relative flex h-full bg-white">
+        <div className="relative flex h-full bg-white w-full">
             {/* Main Content */}
             <div className="flex-1 overflow-hidden">
                 {/* Header */}
