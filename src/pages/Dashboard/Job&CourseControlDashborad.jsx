@@ -272,179 +272,138 @@ const JobCourseControlDashboard = () => {
     };
 
     return (
-         <div className="relative flex h-full bg-white">
-            {/* Main Content */}
-            <div className="flex-1 overflow-hidden ">
-                {/* Header */}
-                <Header
-                    placeholder="Search by name, position"
-                    userRole="Admin"
-                    showNotification={true}
-                    onSearch={handleSearch}
-                    onNotificationClick={handleNotificationClick}
-                    onUserClick={handleUserClick}
-                    onDropdownClick={() => console.log('Dropdown clicked')}
+      <div className="flex flex-col h-full bg-white">
+    {/* Header */}
+    <Header
+        placeholder="Search by name, position"
+        userRole="Admin"
+        showNotification={true}
+        onSearch={handleSearch}
+        onNotificationClick={handleNotificationClick}
+        onUserClick={handleUserClick}
+        onDropdownClick={() => console.log('Dropdown clicked')}
+    />
+
+    {/* Page Title */}
+    <div className="px-4 sm:px-6 lg:px-8 py-4 text-center">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B537D]">
+            Job & Course Control
+        </h1>
+        <p className="text-[#0B537D] text-xs sm:text-sm lg:text-base mt-1">
+            Manage job postings, course approvals, and content quality control
+        </p>
+    </div>
+
+    {/* Stats Cards */}
+    <div className="px-4 sm:px-6 lg:px-8 mb-4 sm:mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+            {stats.map((stat, index) => (
+                <CardComponent key={index} stat={stat} />
+            ))}
+        </div>
+    </div>
+
+    {/* Navigation Tabs */}
+    <div className="relative w-full max-w-full sm:max-w-md md:max-w-md lg:max-w-2xl xl:max-w-2xl 2xl:max-w-2xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 bg-white rounded-2xl flex justify-center items-center overflow-x-auto">
+          <NavigationTabs
+            navigationTabs={navigationTabs}
+            activeNavTab={activeNavTab}
+            setActiveNavTab={setActiveNavTab}
+          />
+        </div>
+
+
+    {/* Dashboard Content */}
+    <div className="flex-1 px-2 sm:px-4 lg:px-6 mb-4 sm:mb-6">
+        {renderDashboardContent()}
+    </div>
+
+    {/* Job Management Section */}
+    <div className="px-4 sm:px-6 lg:px-8 mb-6">
+        {/* Search & Filters */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4">
+            <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                    type="text"
+                    placeholder="Search Jobs by title"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
                 />
-                
-                <div className="flex-1 overflow-hidden">
-                    <div className="mb-4 sm:mb-6 px-2 sm:px-4 lg:px-6 pt-4 sm:pt-6">
-                        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B537D] mb-2 text-center">
-                            Job & Course Control
-                        </h1>
-                        <p className="text-[#0B537D] text-center text-xs sm:text-sm lg:text-base">
-                            Manage job postings, course approvals, and content quality control
-                        </p>
-                    </div>
-                </div>
-
-                {/* Stats Cards */}
-                <div className="p-2 sm:p-4 lg:p-6 bg-white min-h-screen">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6">
-                            {stats.map((stat, index) => (
-                                <CardComponent key={index} stat={stat} />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Navigation Tabs */}
-                    <div className="relative px-2 sm:px-4 lg:px-6 py-4 sm:py-6 bg-white rounded-2xl flex justify-center items-center mb-4 sm:mb-6">
-                        <NavigationTabs
-                            navigationTabs={navigationTabs}
-                            activeNavTab={activeNavTab}
-                            setActiveNavTab={setActiveNavTab}
-                        />
-                    </div>
-
-                    {/* Dashboard Content */}
-                    {renderDashboardContent()}
-
-                    <div className="w-full max-w-7xl mx-auto bg-[#F6FAFF] border border-[#F6FAFF] rounded-lg p-3 sm:p-4 lg:p-6">
-                        {/* Header */}
-                        <div className="flex items-center mb-4 sm:mb-6">
-                            <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-600 rounded mr-2 sm:mr-3 flex items-center justify-center">
-                                <Briefcase className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
-                            </div>
-                            <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-800">Job Posting Management</h1>
-                        </div>
-
-                        {/* Search and Filter Bar */}
-                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                            <div className="relative flex-1 max-w-full sm:max-w-md">
-                                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                <input
-                                    type="text"
-                                    placeholder="Search Jobs by title"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-                                />
-                            </div>
-
-                            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-                                <select
-                                    value={statusFilter}
-                                    onChange={(e) => setStatusFilter(e.target.value)}
-                                    className="w-full sm:w-auto px-3 sm:px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-                                >
-                                    <option>All Status</option>
-                                    <option>Active</option>
-                                    <option>Pending</option>
-                                    <option>Urgent</option>
-                                    <option>Promoted</option>
-                                </select>
-
-                                <select
-                                    value={companyFilter}
-                                    onChange={(e) => setCompanyFilter(e.target.value)}
-                                    className="w-full sm:w-auto px-3 sm:px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
-                                >
-                                    <option>All Companies</option>
-                                    <option>TechCorp Solution</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4 sm:mb-6">
-                            <button
-                                className="bg-[#0B537D] hover:bg-[#094461] text-white px-3 sm:px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
-                                onClick={handleBulkPromote}
-                            >
-                                <span>⚡</span>
-                                <span>Bulk Promote</span>
-                            </button>
-
-                            <button
-                                className="bg-[#5B9821] hover:bg-[#4a7a1c] text-white px-3 sm:px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
-                                onClick={handleBulkApprove}
-                            >
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                                <span>Bulk Approve</span>
-                            </button>
-
-                            <button
-                                className="bg-[#FF5F38] hover:bg-[#e54e31] text-white px-3 sm:px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
-                                onClick={handleBulkRemove}
-                            >
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                                </svg>
-                                <span>Bulk Remove</span>
-                            </button>
-                        </div>
-
-                        {/* Job Listings Grid */}
-                        <div className="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
-                            {jobs.map((job) => (
-                                <div key={job.id} className="bg-[#F6FAFF] rounded-lg border border-gray-200 p-3 sm:p-4 shadow-sm">
-                                    {/* Job Header */}
-                                    <div className="flex justify-between items-start mb-2 sm:mb-3">
-                                        <div className="flex-1 min-w-0">
-                                            <div className="text-gray-600 text-xs sm:text-sm mb-1 truncate">{job.company}</div>
-                                            <h3 className="font-semibold text-gray-800 text-sm sm:text-base lg:text-lg line-clamp-2">{job.title}</h3>
-                                        </div>
-                                        <span className={`px-2 py-1 rounded text-xs font-medium flex-shrink-0 ml-2 ${job.statusColor}`}>
-                                            {job.status}
-                                        </span>
-                                    </div>
-
-                                    {/* Job Details */}
-                                    <div className="grid grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">
-                                        <div className="flex items-center gap-1 truncate">
-                                            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                                            <span className="truncate">{job.location}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1 truncate">
-                                            <Star className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                                            <span className="truncate">{job.salary}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1 truncate">
-                                            <Users className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                                            <span className="truncate">{job.experience}</span>
-                                        </div>
-                                        <div className="flex items-center gap-1 truncate">
-                                            <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-                                            <span className="truncate">{job.daysAgo}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Job Description */}
-                                    <p className="text-gray-700 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">
-                                        {job.description}
-                                    </p>
-
-                                    {/* Dynamic Action Buttons */}
-                                    {renderActionButtons(job)}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
+                <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="w-full sm:w-auto px-3 sm:px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                >
+                    <option>All Status</option>
+                    <option>Active</option>
+                    <option>Pending</option>
+                    <option>Urgent</option>
+                    <option>Promoted</option>
+                </select>
+                <select
+                    value={companyFilter}
+                    onChange={(e) => setCompanyFilter(e.target.value)}
+                    className="w-full sm:w-auto px-3 sm:px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                >
+                    <option>All Companies</option>
+                    <option>TechCorp Solution</option>
+                </select>
             </div>
         </div>
+
+        {/* Bulk Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-4">
+            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#0B537D] hover:bg-[#094461] text-white px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base" onClick={handleBulkPromote}>
+                ⚡ Bulk Promote
+            </button>
+            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#5B9821] hover:bg-[#4a7a1c] text-white px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base" onClick={handleBulkApprove}>
+                ✅ Bulk Approve
+            </button>
+            <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#FF5F38] hover:bg-[#e54e31] text-white px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base" onClick={handleBulkRemove}>
+                ❌ Bulk Remove
+            </button>
+        </div>
+
+        {/* Job Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+            {jobs.map((job) => (
+                <div key={job.id} className="bg-[#F6FAFF] rounded-lg border border-gray-200 p-3 sm:p-4 shadow-sm w-full">
+                    {/* Job Header */}
+                    <div className="flex justify-between items-start mb-2 sm:mb-3">
+                        <div className="flex-1 min-w-0">
+                            <div className="text-gray-600 text-xs sm:text-sm mb-1 truncate">{job.company}</div>
+                            <h3 className="font-semibold text-gray-800 text-sm sm:text-base lg:text-lg line-clamp-2">{job.title}</h3>
+                        </div>
+                        <span className={`px-2 py-1 rounded text-xs font-medium flex-shrink-0 ml-2 ${job.statusColor}`}>
+                            {job.status}
+                        </span>
+                    </div>
+
+                    {/* Job Details */}
+                    <div className="grid grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">
+                        <div className="flex items-center gap-1 truncate"><MapPin className="w-3 h-3 sm:w-4 sm:h-4" />{job.location}</div>
+                        <div className="flex items-center gap-1 truncate"><Star className="w-3 h-3 sm:w-4 sm:h-4" />{job.salary}</div>
+                        <div className="flex items-center gap-1 truncate"><Users className="w-3 h-3 sm:w-4 sm:h-4" />{job.experience}</div>
+                        <div className="flex items-center gap-1 truncate"><Clock className="w-3 h-3 sm:w-4 sm:h-4" />{job.daysAgo}</div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-700 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">
+                        {job.description}
+                    </p>
+
+                    {/* Actions */}
+                    {renderActionButtons(job)}
+                </div>
+            ))}
+        </div>
+    </div>
+</div>
+
     );
 };
 

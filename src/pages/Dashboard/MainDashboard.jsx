@@ -84,13 +84,13 @@ const MainDashboard = () => {
         />
 
         {/* Navigation Tabs */}
-        <div className="relative px-6 py-6 bg-white rounded-2xl flex justify-center items-center">
-          <NavigationTabs
-            navigationTabs={navigationTabs}
-            activeNavTab={activeNavTab}
-            setActiveNavTab={setActiveNavTab}
-          />
-        </div>
+       <div className="relative w-full max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-6 bg-white rounded-2xl flex justify-center items-center overflow-x-auto">
+  <NavigationTabs
+    navigationTabs={navigationTabs}
+    activeNavTab={activeNavTab}
+    setActiveNavTab={setActiveNavTab}
+  />
+</div>
 
         {/* Dashboard Content */}
         {renderDashboardContent()}

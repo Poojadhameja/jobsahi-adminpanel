@@ -11,7 +11,7 @@ const Header = ({
   onDropdownClick,
 }) => {
   return (
-    <header className="bg-white px-3 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0">
+    <header className="bg-white px-3 sm:px-3 md:px-3 lg:px-3 xl:px-3 2xl:px-3">
       <div className="flex items-center ">
         {/* Search Bar */}
         <div className="flex-1 relative max-w-8xl">

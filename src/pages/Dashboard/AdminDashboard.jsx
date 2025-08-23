@@ -134,7 +134,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
           {statsData.map((stat, index) => (
             <StatsCard key={index} stat={stat} />
           ))}
@@ -143,15 +143,15 @@ const AdminDashboard = () => {
         {/* Placement Success Funnel */}
        <div className="bg-[#F6FAFF] p-6 rounded-lg shadow-sm border mb-8">
           <h3 className="text-md font-semibold text-gray-900 mb-6">Placement Success Funnel</h3>
-          <div className="grid grid-cols-4 md:grid-cols-4 md:text-xs gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:text-xs gap-6">
             {funnelData.map((item, index) => (
               <div key={index} className="text-center">
                 <div className={`w-20 h-20 ${item.bgColor} rounded-full flex items-center justify-center mx-auto mb-3`}>
                   <span className="text-white font-bold text-md">{item.count}</span>
                 </div>
                 <div>
-                  <p className="text-gray-900 text-xs mb-1">{item.title}</p>
-                  <p className="text-sm text-gray-600">{item.subtitle}</p>
+                  <p className="text-gray-900 text-md font-semibold mb-1">{item.title}</p>
+                  <p className="text-xs text-gray-600">{item.subtitle}</p>
                 </div>
               </div>
             ))}
@@ -177,16 +177,16 @@ const AdminDashboard = () => {
                   dataKey="month"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 12, fill: '#666' }}
-                  className="text-xs sm:text-sm"
+                  tick={{ fontSize: 15, fill: '#666' }}
+                  className="text-md sm:text-md"
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fontSize: 12, fill: '#666' }}
+                  tick={{ fontSize: 15, fill: '#666' }}
                   domain={[0, 4000]}
                   ticks={[0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000]}
-                  className="text-xs sm:text-sm"
+                  className="text-md sm:text-md"
                 />
                 <Tooltip
                   contentStyle={{

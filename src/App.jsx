@@ -17,7 +17,7 @@ function App() {
       <div className="grid sm:flex md:flex min-h-screen">
         <AdminSidebar /> {/* Use AdminSidebar for admin routes */}
 
-       <div className="p-4 flex sm:flex md:flex lg:flex xl:flex 2xl:flex sm:ml-64 lg:ml-64 flex-1">
+       <div className="px-2 py-2 flex sm:flex md:flex lg:flex xl:flex 2xl:flex sm:ml-64 lg:ml-64 flex-1">
 
           <Routes>
             <Route path="/" element={<AdminDashboard />} />
